@@ -12,7 +12,7 @@ cuda:      cuda.cu kernels.h functions.h
 	   nvcc cuda.cu $(SDKINC) $(INC) $(NVCCFLAGS) $(LIB) $(LIBS)
 
 dns3: 	global_params.F90 parameters.F90 main.F90 init.F90 cuda.o
-	mpif90 -O3 -fno-math-errno -mcmodel=large  -o ../bin/dns3 global_params.F90 parameters.F90 main.F90 init.F90 cuda.o $(LIB) $(LIBS)
+	gfortran -O3 -fno-math-errno -mcmodel=large  -o ../bin/dns3 global_params.F90 parameters.F90 main.F90 init.F90 cuda.o $(LIB) $(LIBS)
 
 rewrite: rewrite_plane
 

@@ -2,7 +2,7 @@ INC     := -I$(CUDA_HOME)/include/ -I.
 LIB     := -L$(CUDA_HOME)/lib64
 SDKINC  := -I$(CUDA_HOME)/samples/common/
 
-NVCCFLAGS := -O3 -arch=sm_70 -D_FORCE_INLINES --use_fast_math -c
+NVCCFLAGS := -O3 -arch=sm_70 -D_FORCE_INLINES -fPIC --use_fast_math -c
 
 LIBS    := -lstdc++ -lcufft -lcudart -lm
  
@@ -12,7 +12,7 @@ cuda:      cuda.cu kernels.h functions.h
 	   nvcc cuda.cu $(SDKINC) $(INC) $(NVCCFLAGS) $(LIB) $(LIBS)
 
 dns3: 	global_params.F90 parameters.F90 main.F90 init.F90 cuda.o
-	mpif90 -O3 -fno-math-errno -mcmodel=large  -o ../bin/dns3 global_params.F90 parameters.F90 main.F90 init.F90 cuda.o $(LIB) $(LIBS)
+	gfortran -O3 -fno-math-errno -mcmodel=large  -o ../bin/dns3 global_params.F90 parameters.F90 main.F90 init.F90 cuda.o $(LIB) $(LIBS)
 
 rewrite: rewrite_plane
 

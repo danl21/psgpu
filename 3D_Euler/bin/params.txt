@@ -1,0 +1,13 @@
+ISEED = 837920
+IREST = 0
+infile = none
+infile type = D
+TSTEP = 50.0
+outfreq1 = 0.01
+outfreq2 = 0.5
+DELT = 0.01
+AMPV = 1.E-3
+STATSFLAG = 1
+
+
+
